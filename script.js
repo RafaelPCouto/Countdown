@@ -5,6 +5,16 @@ const second = document.getElementById("second");
 
 const date = '01 aug 2024'
 
+const classTime = document.getElementsByClassName("timeValues")
+
+function timeAdjust(time) {
+    if (time < 10) {
+        return `0${time}`;
+    } else {
+        return time;
+    }
+}
+
 function countDown() {
     const finalDate = new Date(date);
     const today = new Date();
@@ -17,9 +27,10 @@ function countDown() {
     const finalSeconds = Math.floor(secTotal) % 60;
 
     day.innerHTML = finalDays;
-    hour.innerHTML = finalHours;
-    minute.innerHTML = finalMinutes;
-    second.innerHTML = finalSeconds;
+    hour.innerHTML = timeAdjust(finalHours);
+    minute.innerHTML = timeAdjust(finalMinutes);
+    second.innerHTML = timeAdjust(finalSeconds);
 }
 
 countDown()
+setInterval(countDown, 1000)
